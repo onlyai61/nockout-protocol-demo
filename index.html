@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | unity_rough_demo_project</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>NOCKOUT PROTOCOL Mobile</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -25,6 +26,19 @@
     </div>
     <script>
       var canvas = document.querySelector("#unity-canvas");
+      function requestNockoutLandscape() {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('landscape').catch(function(){});
+        }
+        var root = document.documentElement;
+        if (root.requestFullscreen) {
+          root.requestFullscreen().catch(function(){});
+        } else if (root.webkitRequestFullscreen) {
+          root.webkitRequestFullscreen();
+        }
+      }
+      window.addEventListener('pointerdown', requestNockoutLandscape, { once: true, passive: true });
+      window.addEventListener('touchstart', requestNockoutLandscape, { once: true, passive: true });
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -52,12 +66,13 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/RoughDemo.loader.js";
+      var nockoutBuildVersion = "639151982956514210";
+      var loaderUrl = buildUrl + "/RoughDemo.loader.js?v=" + nockoutBuildVersion;
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/RoughDemo.data",
-        frameworkUrl: buildUrl + "/RoughDemo.framework.js",
-        codeUrl: buildUrl + "/RoughDemo.wasm",
+        dataUrl: buildUrl + "/RoughDemo.data?v=" + nockoutBuildVersion,
+        frameworkUrl: buildUrl + "/RoughDemo.framework.js?v=" + nockoutBuildVersion,
+        codeUrl: buildUrl + "/RoughDemo.wasm?v=" + nockoutBuildVersion,
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "unity_rough_demo_project",
@@ -99,13 +114,13 @@
 
         // To lower canvas resolution on mobile devices to gain some
         // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+        config.devicePixelRatio = 1;
 
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "1280px";
-        canvas.style.height = "720px";
+        canvas.style.width = "100vw";
+        canvas.style.height = "100vh";
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
