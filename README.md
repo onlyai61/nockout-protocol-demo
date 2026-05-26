@@ -1,13 +1,11 @@
-# Nockout Protocol Demo
+# NOCKOUT Protocol Demo Reset
 
-Unity WebGL rough prototype.
+This repository previously hosted an early WebGL demo build.
 
-Controls:
-- START to play
-- HANGAR for rig/upgrade menu
-- Left joystick / WASD: move
-- PUNCH: punch animation
-- KICK: kick animation
-- JUMP: jump
-- DASH: sprint
-- KO / K: simulate battle win and coin reward
+The old demo build has been removed because the project is restarting from the new UI/wireframe direction.
+
+Current working direction:
+
+- Main planning repo: https://github.com/onlyai61/nockout-protocol
+- Current wireframe: https://onlyai61.github.io/nockout-protocol/
+
